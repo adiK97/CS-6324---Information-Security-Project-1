@@ -1,5 +1,5 @@
 import java.io.File;
-
+//initial commit
 public class TestBuild {
 
 	public final static String TEMP_RES_FOLDER = "./temp/";
