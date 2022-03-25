@@ -45,30 +45,30 @@ public abstract class Utility {
     public abstract void cut(String file_name, int len, String password) throws Exception;
 
     public void set_username_password() {
-//        JPanel loginPanel = new JPanel();
-//        loginPanel.setLayout(new java.awt.GridLayout(2, 2));
-//
-//        JLabel username_tag = new JLabel();
-//        JTextField username_field = new JTextField();
-//
-//        username_tag.setText("username");
-//        loginPanel.add(username_tag);
-//        loginPanel.add(username_field);
-//
-//        JLabel password_tag = new JLabel();
-//        JPasswordField password_field = new JPasswordField();
-//
-//        password_tag.setText("password");
-//        loginPanel.add(password_tag);
-//        loginPanel.add(password_field);
-//
-//        int okCxl = JOptionPane.showConfirmDialog(null, loginPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-//
-//        if (okCxl == JOptionPane.OK_OPTION) {
-//            this.password = new String(password_field.getPassword());
-//            this.username = new String(username_field.getText());
-//
-//        }
+        JPanel loginPanel = new JPanel();
+        loginPanel.setLayout(new java.awt.GridLayout(2, 2));
+
+        JLabel username_tag = new JLabel();
+        JTextField username_field = new JTextField();
+
+        username_tag.setText("username");
+        loginPanel.add(username_tag);
+        loginPanel.add(username_field);
+
+        JLabel password_tag = new JLabel();
+        JPasswordField password_field = new JPasswordField();
+
+        password_tag.setText("password");
+        loginPanel.add(password_tag);
+        loginPanel.add(password_field);
+
+        int okCxl = JOptionPane.showConfirmDialog(null, loginPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (okCxl == JOptionPane.OK_OPTION) {
+            this.password = new String(password_field.getPassword());
+            this.username = new String(username_field.getText());
+
+        }
     }
 
     public byte[] read_from_file(File file) throws Exception {
@@ -152,7 +152,7 @@ public abstract class Utility {
         for (int i = 0; i < array.length; i++) {
             if (array[i] < 0)
             {
-//                javax.swing.JOptionPane.showMessageDialog(null, "Error: cannot convert negative number " + array[i] + " into character");
+                javax.swing.JOptionPane.showMessageDialog(null, "Error: cannot convert negative number " + array[i] + " into character");
                 //return "";
             }
             ret += (char) array[i];

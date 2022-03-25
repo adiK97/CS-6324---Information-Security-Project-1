@@ -254,9 +254,9 @@ public class Editor extends javax.swing.JFrame {
             int len = utility.length(file.getAbsolutePath(), utility.password);
 
             byte[] ba = utility.read(file.getAbsolutePath(), 0, len, utility.password);
-            
-            for (int i = 0; i < ba.length; i++)
-                System.out.println(ba[i]);
+
+//            for (int i = 0; i < ba.length; i++)
+//                System.out.println(ba[i]);
 
             String s = Utility.byteArray2String(ba);
 
@@ -394,7 +394,6 @@ public class Editor extends javax.swing.JFrame {
             loginPanel.add(start_field);
 
 
-
             int okCxl = JOptionPane.showConfirmDialog(null, loginPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
             int start = 0, len = 0;
@@ -418,7 +417,6 @@ public class Editor extends javax.swing.JFrame {
                 utility.write(utility.dir.getAbsolutePath(), start, text.getText().getBytes("UTF-8"), utility.password);
 
             }
-
 
 
         } catch (Exception ex) {
@@ -475,7 +473,6 @@ public class Editor extends javax.swing.JFrame {
             }
 
 
-
             // TODO add your handling code here:
 
         } catch (Exception ex) {
@@ -501,7 +498,6 @@ public class Editor extends javax.swing.JFrame {
             loginPanel.add(start_field);
 
 
-
             int okCxl = JOptionPane.showConfirmDialog(null, loginPanel, "Enter Password", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
             int start = 0, len = 0;
@@ -524,10 +520,6 @@ public class Editor extends javax.swing.JFrame {
 
                 utility.cut(utility.dir.getAbsolutePath(), len, utility.password);
             }
-
-
-
-
 
 
         } catch (Exception ex) {
@@ -609,7 +601,7 @@ public class Editor extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -636,6 +628,7 @@ public class Editor extends javax.swing.JFrame {
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuBar menu;
