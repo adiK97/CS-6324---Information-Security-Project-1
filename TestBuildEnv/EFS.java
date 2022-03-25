@@ -3,7 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Base64;
 
-/*
+/**
     External References:
         crypto.stackexchange.com
         stackoverflow.com
@@ -20,7 +20,9 @@ public class EFS extends Utility {
 
     public File folder_name;
 
-    public byte[] stringConvertor(String s, byte[] s_bytes, String sname) {
+
+    // Method to convert any given string to 128 bytes
+    public byte[] stringConverter(String s, byte[] s_bytes, String sname) {
         if (s.length() > 128) {
             for (int i = 0; i < s.substring(0, 128).length(); i++) {
                 if (i <= 128)
@@ -77,7 +79,7 @@ public class EFS extends Utility {
     public byte[] get_passwordHash(String pass, byte[] iv) throws Exception {
 
         byte[] tempPass = new byte[128];
-        tempPass = stringConvertor(pass, tempPass, "password");
+        tempPass = stringConverter(pass, tempPass, "password");
 
         byte[] salt = new byte[tempPass.length + iv.length];
         System.arraycopy(tempPass, 0, salt, 0, tempPass.length);
@@ -117,7 +119,7 @@ public class EFS extends Utility {
         return HMAC;
     }
 
-
+    // Method to build 1024 byte blocks for encryption
     public void encryptedBlocks(String file_name, int block, byte[] iv, byte[] pass) throws Exception {
         File file = new File(file_name);
         File meta = new File(file, Integer.toString(block));
@@ -189,7 +191,7 @@ public class EFS extends Utility {
     public void writeBlock(String file_name, String text, byte[] iv, byte[] pass, int start) throws Exception {
         String length = Integer.toString(text.length());
         byte[] temp = new byte[128];
-        temp = stringConvertor(length, temp, "length");
+        temp = stringConverter(length, temp, "length");
         byte[] lenAES = new byte[128];
         aes_encryptBuff(pass, iv, temp, lenAES);
         byte[] block0 = get_BlockData(file_name, 0).clone();
@@ -209,7 +211,7 @@ public class EFS extends Utility {
                 temp1 = text.substring(j * 128);
             }
             byte[] buff = new byte[128];
-            buff = stringConvertor(temp1, buff, "text");
+            buff = stringConverter(temp1, buff, "text");
             byte[] aes_buff = new byte[128];
             aes_encryptBuff(pass, iv, buff, aes_buff);
             byte[] currText = get_BlockData(file_name, j + 1);
@@ -238,14 +240,14 @@ public class EFS extends Utility {
         String meta = "";
 
         byte[] user_bytes = new byte[128];
-        user_bytes = stringConvertor(user_name, user_bytes, "username");
+        user_bytes = stringConverter(user_name, user_bytes, "username");
         meta += new String(user_bytes, StandardCharsets.UTF_8);
 
         byte[] iv = secureRandomNumber(128);
         meta += Base64.getEncoder().encodeToString(iv);
 
         byte[] pass_bytes = new byte[128];
-        pass_bytes = stringConvertor(password, pass_bytes, "password");
+        pass_bytes = stringConverter(password, pass_bytes, "password");
 
         byte[] pass_salt = new byte[pass_bytes.length + iv.length];
         System.arraycopy(pass_bytes, 0, pass_salt, 0, pass_bytes.length);
@@ -262,7 +264,7 @@ public class EFS extends Utility {
         String length = Integer.toString(message.length());
 
         byte[] length_128by = new byte[128];
-        length_128by = stringConvertor(length, length_128by, "length");
+        length_128by = stringConverter(length, length_128by, "length");
 
         byte[] AES_length_128by = new byte[128];
         aes_encryptBuff(pass_bytes, iv, length_128by, AES_length_128by);
